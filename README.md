@@ -3,6 +3,8 @@
 تطبيق دردشة كامل يعمل داخل المتصفح — بواجهة عربية وإنجليزية (RTL/LTR)، بدون خادم وبدون إنترنت.
 A complete, working chat application that runs in your browser — Arabic + English UI (RTL/LTR), no server, no internet required.
 
+> **🌐 جرّبها الآن:** **https://hdm8097-sketch.github.io/wasl/** — المستودع: **https://github.com/hdm8097-sketch/wasl**
+>
 > النموذج التجريبي (demo) للحساب: **demo / wasl1234** — أو اضغط «الدخول كضيف» لإنشاء حساب فوري.
 
 ---
@@ -18,6 +20,12 @@ powershell -ExecutionPolicy Bypass -File "C:\Users\Sa E1\Documents\wasl\server.p
 ثم افتح: **http://localhost:8873/**
 
 **الطريقة الثانية:** افتح `index.html` مباشرة في المتصفح (نظام ملفات `file://` — بعض المتصفحات تقيّد التخزين المحلي عليه، لذا الخادم المحلي أفضل).
+
+**النشر على GitHub Pages:** المستودع مُفعَّل عليه Pages من فرع `main` — كل دفع إلى `main` يعيد نشر الموقع تلقائياً:
+
+```powershell
+git add -A; git commit -m "update"; git push
+```
 
 لا توجد خطوة بناء (build) — لا Node.js ولا npm ولا حزم خارجية. كل الملفات كلاسيكية (classic scripts).
 
