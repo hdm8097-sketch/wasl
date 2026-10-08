@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="aurora">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="وصل | Wasl — تطبيق مراسلة سريع وآمن يعمل بالكامل داخل متصفحك بدون خادم.">
+<meta name="theme-color" content="#0A1020">
+<title>وصل | Wasl — رسالة أسرع، خصوصية أعمق</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235B8CFF'/%3E%3Cstop offset='1' stop-color='%238B5CF6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M14 33.5l36-14.5c1.6-.6 3.2.9 2.7 2.6L43 50.4c-.5 1.7-2.6 2.1-3.7.8l-8.6-9.9-4.6 4.4c-.8.8-2.1.3-2.2-.9l-.5-8.4 19.6-16.3-24 14.4-8-2.6c-1.7-.5-1.7-2.9-.5-3.9z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<!-- ============ ICON SPRITE ============ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5L16.7 16.7"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11v1a7 7 0 0 0 14 0v-1"/><path d="M12 19v3M8.5 22h7"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15.5l-4.5-4.5L5 21"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M13.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.5z"/><path d="M13.5 2v6.5H20"/></symbol>
+  <symbol id="i-poll" viewBox="0 0 24 24"><path d="M6 20V11M12 20V4M18 20v-6"/></symbol>
+  <symbol id="i-sticker" viewBox="0 0 24 24"><path d="M20 12.5A8.5 8.5 0 1 1 11.5 4a4.5 4.5 0 0 0 4.5 4.5 4.5 4.5 0 0 0 4 4z"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="9.5" r="1"/><path d="M9 15c1.6 1.3 4.4 1.3 6 0"/></symbol>
+  <symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1.9 2 5.1 2 7 0"/><circle cx="9" cy="9.5" r="1.1"/><circle cx="15" cy="9.5" r="1.1"/></symbol>
+  <symbol id="i-reply" viewBox="0 0 24 24"><path d="M9 17l-6-6 6-6"/><path d="M3 11h11a6 6 0 0 1 6 6v2"/></symbol>
+  <symbol id="i-forward" viewBox="0 0 24 24"><path d="M15 17l6-6-6-6"/><path d="M21 11H10a6 6 0 0 0-6 6v2"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M9 3h6l-1 6 3.2 3.2V15H6.8v-2.8L10 9 9 3z"/><path d="M12 14.5V21"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3.5 6h17"/><path d="M18.5 6l-.9 13.1A2 2 0 0 1 15.6 21H8.4a2 2 0 0 1-2-1.9L5.5 6"/><path d="M9.5 6V4.4A1.4 1.4 0 0 1 11 3h2a1.4 1.4 0 0 1 1.5 1.4V6"/><path d="M10 10.5v6M14 10.5v6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5 1-4.7 4.6 1.1 6.5L12 17.5l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-1L12 2.6z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16.5v-5"/><circle cx="12" cy="8" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><path d="M23 7l-6 4.5L23 16V7z"/><rect x="1" y="5" width="15" height="14" rx="3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16.5 21v-2a4 4 0 0 0-4-4h-5a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7.5" r="4"/><path d="M21.5 21v-2a4 4 0 0 0-3-3.9"/><path d="M15.5 3.6a4 4 0 0 1 0 7.8"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7.5" r="4"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 12H4"/><path d="M10 18l-6-6 6-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6.5L9.2 17.3 4 12.2"/></symbol>
+  <symbol id="i-check2" viewBox="0 0 24 24"><path d="M17.5 6.8L9.6 14.7 6.2 11.3"/><path d="M21.5 7.2l-8.7 8.7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8.5A6 6 0 0 0 6 8.5c0 7-3 9.5-3 9.5h18s-3-2.5-3-9.5"/><path d="M13.7 21.5a2 2 0 0 1-3.4 0"/></symbol>
+  <symbol id="i-bell-off" viewBox="0 0 24 24"><path d="M13.7 21.5a2 2 0 0 1-3.4 0"/><path d="M18.6 13.7C18.3 19 21 21.5 21 21.5H3s3-2.5 3-9.5c0-.8.1-1.5.4-2.2"/><path d="M6.3 6.3A6 6 0 0 0 6 8.5"/><path d="M10.7 2.8A6 6 0 0 1 18 8.5v3.6"/><path d="M2 2l20 20"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 1.5v2.5M12 20v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M1.5 12H4M20 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 4 9 15 15 0 0 1-4 9 15 15 0 0 1-4-9 15 15 0 0 1 4-9z"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 1 9-9c0 2-1.6 3-3.5 3H16a2 2 0 0 0-1.5 3.3c.4.5.2 1.7-2.5 2.7z"/><circle cx="7.5" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="10" cy="7.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="7.8" r="1.2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="11" rx="3"/><path d="M7.5 10.5V7a4.5 4.5 0 0 1 9 0v3.5"/><path d="M12 15v2.5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3.5"/><path d="M7.5 11L12 15.5 16.5 11"/><path d="M12 15.5V3"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 8.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3.5"/><path d="M7.5 8.5L12 4l4.5 4.5"/><path d="M12 4v11.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6.5 4.7v14.6c0 1 1.1 1.6 2 1.1l11.2-7.3c.8-.5.8-1.7 0-2.2L8.5 3.6c-.9-.5-2 .1-2 1.1z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="4" width="4.5" height="16" rx="1.6"/><rect x="13.5" y="4" width="4.5" height="16" rx="1.6"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3.2"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13.5a5 5 0 0 0 7.5.5l2.5-2.5a5 5 0 0 0-7-7L11.7 6.3"/><path d="M14 10.5a5 5 0 0 0-7.5-.5L4 12.5a5 5 0 0 0 7 7l1.4-1.4"/></symbol>
+  <symbol id="i-at" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></symbol>
+  <symbol id="i-mega" viewBox="0 0 24 24"><path d="M3 11v2a2 2 0 0 0 2 2h1.5l1 6h3l-1-6 10 4V5L7.5 9H5a2 2 0 0 0-2 2z"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3.5"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1.4"/><path d="M9 13.5v1M15 13.5v1"/><path d="M9.5 17.5h5"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M18 21l-6-4.3L6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.5l1.9 5.3 5.3 1.9-5.3 1.9L12 16.9l-1.9-5.3-5.3-1.9 5.3-1.9L12 2.5z"/><path d="M19 15.5l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9.9-2.4z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-3.5 8-10V5.5L12 2 4 5.5V12c0 6.5 8 10 8 10z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4.5"/><path d="M11.5 12L20 3.5"/><path d="M16.5 7l2.5 2.5"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9.5 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4.5"/><path d="M16 16.5l4.5-4.5L16 7.5"/><path d="M20.5 12H9"/></symbol>
+  <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="8"/><path d="M12 9.5v4l2.5 1.5"/><path d="M9.5 2.5h5"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12"/><path d="M3.5 6l1.3 1.3L7.2 4.8M3.5 12l1.3 1.3L7.2 10.8M3.5 18l1.3 1.3L7.2 16.8"/></symbol>
+  <symbol id="i-lang" viewBox="0 0 24 24"><path d="M3 5.5h9M7.5 3.5v2"/><path d="M10.5 5.5c0 4-3.5 8-7.5 9.5"/><path d="M5 9.5c1.5 3 4 5 7 6"/><path d="M12.5 21l4.2-10 4.3 10"/><path d="M14.3 17.5h5"/></symbol>
+  <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.8a5 5 0 0 0-7.1 0L12 7.5l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21.5l8.8-8.6a5 5 0 0 0 0-7.1z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 4v6h-6"/><path d="M20.5 14a8.5 8.5 0 1 1-2-8.5L21 8"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.5 2L4 13.5h7L10.5 22 20 10.5h-7L13.5 2z"/></symbol>
+  <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6.5 9.5h.01M10 9.5h.01M13.5 9.5h.01M17.5 9.5h.01M6.5 12.8h.01M10 12.8h.01M13.5 12.8h.01M17.5 12.8h.01M8.5 15.8h7"/></symbol>
+  <symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M2 2l20 20"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M5 13a10 10 0 0 1 3.5-2.3M19 13a10 10 0 0 0-8-2.9"/><path d="M1.5 9.3A15 15 0 0 1 7 6.2M22.5 9.3a15 15 0 0 0-6-3"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-archive" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4.5" rx="1.5"/><path d="M4.5 8.5V19a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8.5"/><path d="M10 12.5h4"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 7.5V6a2 2 0 0 0-2-2H5.5A2.5 2.5 0 0 0 3 6.5v11A2.5 2.5 0 0 0 5.5 20H19a2 2 0 0 0 2-2v-8.5a2 2 0 0 0-2-2H5.5"/><circle cx="16.5" cy="14" r="1.2" fill="currentColor" stroke="none"/></symbol>
+</svg>
+
+<!-- ============ LOCK SCREEN ============ -->
+<div id="lock" class="lock" hidden>
+  <div class="lock-card">
+    <div class="lock-logo" data-logo></div>
+    <h2 data-i18n="lock.title">التطبيق مقفل</h2>
+    <p data-i18n="lock.sub">أدخل رمز الدخول المكوّن من 4 أرقام</p>
+    <div class="pin-dots" id="pinDots"><i></i><i></i><i></i><i></i></div>
+    <div class="keypad" id="keypad">
+      <button>1</button><button>2</button><button>3</button>
+      <button>4</button><button>5</button><button>6</button>
+      <button>7</button><button>8</button><button>9</button>
+      <button data-act="bio">🌟</button><button>0</button><button data-act="del">⌫</button>
+    </div>
+    <button class="link-btn" id="lockLogout" data-i18n="lock.other">حساب آخر</button>
+  </div>
+</div>
+
+<!-- ============ AUTH SCREEN ============ -->
+<div id="auth" class="auth" hidden>
+  <div class="auth-brand">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+    <div class="auth-brand-inner">
+      <div class="brand-top">
+        <div class="brand-logo" data-logo></div>
+        <div class="brand-name">وصل <span>Wasl</span></div>
+        <div class="lang-switch" id="authLang">
+          <button data-lang="ar" class="on">العربية</button>
+          <button data-lang="en">English</button>
+        </div>
+      </div>
+      <h1 data-i18n="auth.hero">رسائل أسرع.<br>خصوصية أعمق.</h1>
+      <p data-i18n="auth.heroSub">تطبيق دردشة يعمل بالكامل داخل متصفحك — بلا خادم، بلا تتبّع، بلا إعلانات. بياناتك لا تغادر جهازك أبداً.</p>
+      <ul class="brand-feats">
+        <li><span>⚡</span><div><b data-i18n="auth.f1t">فوري بين التبويبات</b><small data-i18n="auth.f1s">افتح تبويبين وتحدّث مباشرة عبر BroadcastChannel</small></div></li>
+        <li><span>🤖</span><div><b data-i18n="auth.f2t">مساعد وصل الذكي</b><small data-i18n="auth.f2s">يجيبك محلياً: حسابات، نكت، أفكار، ومهام</small></div></li>
+        <li><span>🔐</span><div><b data-i18n="auth.f3t">تشفير وتدمير ذاتي</b><small data-i18n="auth.f3s">قفل PIN، رسائل تختفي، وسجل محاولات محلي</small></div></li>
+        <li><span>🎨</span><div><b data-i18n="auth.f4t">10 ثيمات + ألوان بلا حدود</b><small data-i18n="auth.f4s">خصّص كل شيء: الثيم، اللون، الخلفية، الحجم</small></div></li>
+      </ul>
+      <div class="brand-foot"><span data-i18n="auth.local">🔒 بياناتك محفوظة في متصفحك فقط</span></div>
+    </div>
+  </div>
+
+  <div class="auth-form">
+    <div class="auth-card">
+      <div class="auth-tabs" id="authTabs">
+        <button data-tab="signin" class="on" data-i18n="auth.signin">تسجيل الدخول</button>
+        <button data-tab="signup" data-i18n="auth.signup">حساب جديد</button>
+      </div>
+
+      <form id="formSignin" class="auth-fields" autocomplete="off">
+        <label><span data-i18n="auth.username">اسم المستخدم أو رقم الهاتف</span>
+          <input name="who" type="text" required placeholder="sara_k" dir="auto"></label>
+        <label><span data-i18n="auth.password">الرمز السري</span>
+          <input name="pass" type="password" required minlength="4" placeholder="••••••"></label>
+        <p class="auth-err" id="errSignin" hidden></p>
+        <button class="btn primary block" type="submit"><span data-i18n="auth.signin">تسجيل الدخول</span></button>
+        <button class="btn ghost block" type="button" id="btnGuest"><span data-i18n="auth.guest">الدخول كضيف (تجربة فورية)</span></button>
+      </form>
+
+      <form id="formSignup" class="auth-fields" autocomplete="off" hidden>
+        <div class="row2">
+          <label><span data-i18n="auth.name">الاسم</span><input name="name" type="text" required placeholder="محمد أحمد" dir="auto"></label>
+          <label><span data-i18n="auth.username">اسم المستخدم</span><input name="username" type="text" required pattern="[A-Za-z0-9_]{3,24}" placeholder="mohamed"></label>
+        </div>
+        <label><span data-i18n="auth.phone">رقم الهاتف (اختياري)</span><input name="phone" type="tel" placeholder="+963 9XX XXX XXX"></label>
+        <label><span data-i18n="auth.password">الرمز السري</span><input name="pass" type="password" required minlength="4" placeholder="4 أحرف على الأقل"></label>
+        <p class="auth-err" id="errSignup" hidden></p>
+        <button class="btn primary block" type="submit"><span data-i18n="auth.create">إنشاء الحساب</span></button>
+        <p class="auth-note" data-i18n="auth.note">يُجزَّأ الرمز السري محلياً بـ SHA-256 مع ملح فريد — لا يُرسل شيء لأي خادم.</p>
+      </form>
+
+      <div class="auth-demo" id="authDemo"></div>
+    </div>
+    <div class="auth-copy">© 2026 Wasl — <span data-i18n="auth.made">صُنع بعناية، بلا خادم وبلا تتبّع</span></div>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="app" class="app" hidden>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <header class="sb-head">
+      <button class="icon-btn round" id="btnMenu" aria-label="menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+      <div class="sb-search" id="sbSearchWrap">
+        <svg class="ic"><use href="#i-search"/></svg>
+        <input id="sbSearch" type="search" data-i18n-ph="search.ph" placeholder="بحث" autocomplete="off">
+        <button class="clr" id="sbSearchClr" hidden><svg class="ic"><use href="#i-close"/></svg></button>
+      </div>
+      <button class="icon-btn round accent" id="btnNewChat" aria-label="new"><svg class="ic"><use href="#i-edit"/></svg></button>
+    </header>
+
+    <div class="folders" id="folders" role="group"></div>
+
+    <div class="stories" id="stories" hidden></div>
+
+    <div class="chat-list" id="chatList"></div>
+
+    <div class="sb-empty" id="sbEmpty" hidden>
+      <div class="se-ico">🔍</div>
+      <p data-i18n="search.none">لا نتائج مطابقة</p>
+    </div>
+
+    <nav class="sb-dock" id="sbDock">
+      <button id="dockSettings" data-tip="settings"><svg class="ic"><use href="#i-gear"/></svg></button>
+      <button id="dockFolders" data-tip="folders"><svg class="ic"><use href="#i-folder"/></svg></button>
+      <button id="dockLock" data-tip="lock"><svg class="ic"><use href="#i-lock"/></svg></button>
+      <button id="dockTheme" data-tip="theme"><svg class="ic"><use href="#i-moon"/></svg></button>
+      <button id="dockLang" data-tip="lang"><svg class="ic"><use href="#i-globe"/></svg></button>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="main">
+    <!-- empty state -->
+    <section class="empty-state" id="emptyState">
+      <div class="es-card">
+        <div class="es-logo" data-logo></div>
+        <h2 data-i18n="empty.title">اختر محادثة وابدأ المحادثة</h2>
+        <p data-i18n="empty.sub">مرّر بمؤشّرك فوق أي رسالة لعرض الإجراءات، أو اضغط <kbd>Ctrl</kbd>+<kbd>K</kbd> للبحث السريع.</p>
+        <div class="es-actions">
+          <button class="btn primary" id="esNew"><svg class="ic"><use href="#i-edit"/></svg><span data-i18n="empty.new">محادثة جديدة</span></button>
+          <button class="btn ghost" id="esKeys"><svg class="ic"><use href="#i-keyboard"/></svg><span data-i18n="empty.keys">اختصارات لوحة المفاتيح</span></button>
+        </div>
+        <div class="es-stats" id="esStats"></div>
+      </div>
+    </section>
+
+    <!-- conversation -->
+    <section class="conversation" id="conversation" hidden>
+      <header class="chat-head">
+        <button class="icon-btn only-mobile" id="btnBack"><svg class="ic"><use href="#i-back"/></svg></button>
+        <button class="chat-id" id="chatIdBtn">
+          <span class="avatar" id="chatAvatar"></span>
+          <span class="ci-text"><b id="chatTitle">—</b><small id="chatStatus">—</small></span>
+        </button>
+        <div class="head-actions">
+          <button class="icon-btn" id="btnChatSearch" data-tip="search"><svg class="ic"><use href="#i-search"/></svg></button>
+          <button class="icon-btn" id="btnCall" data-tip="call"><svg class="ic"><use href="#i-phone"/></svg></button>
+          <button class="icon-btn" id="btnVideoCall" data-tip="video"><svg class="ic"><use href="#i-video"/></svg></button>
+          <button class="icon-btn" id="btnChatMenu" data-tip="more"><svg class="ic"><use href="#i-more"/></svg></button>
+        </div>
+      </header>
+
+      <div class="in-chat-search" id="inChatSearch" hidden>
+        <svg class="ic"><use href="#i-search"/></svg>
+        <input id="icsInput" type="search" data-i18n-ph="chat.searchPh" placeholder="ابحث في هذه المحادثة">
+        <span class="ics-count" id="icsCount"></span>
+        <button class="icon-btn sm" id="icsPrev">▲</button>
+        <button class="icon-btn sm" id="icsNext">▼</button>
+        <button class="icon-btn sm" id="icsClose"><svg class="ic"><use href="#i-close"/></svg></button>
+      </div>
+
+      <div class="pinned-bar" id="pinnedBar" hidden>
+        <svg class="ic"><use href="#i-pin"/></svg>
+        <div><b id="pinnedTitle"></b><small id="pinnedText"></small></div>
+        <button class="icon-btn sm" id="pinnedClose"><svg class="ic"><use href="#i-close"/></svg></button>
+      </div>
+
+      <div class="msgs" id="msgs"></div>
+
+      <div class="typing-bar" id="typingBar" hidden><span class="dot-typing"><i></i><i></i><i></i></span><span id="typingText"></span></div>
+
+      <footer class="composer-zone">
+        <div class="reply-strip" id="replyStrip" hidden>
+          <svg class="ic"><use href="#i-reply"/></svg>
+          <div><b id="rsName"></b><small id="rsText"></small></div>
+          <button class="icon-btn sm" id="rsClose"><svg class="ic"><use href="#i-close"/></svg></button>
+        </div>
+        <div class="edit-strip" id="editStrip" hidden>
+          <svg class="ic"><use href="#i-edit"/></svg>
+          <div><b data-i18n="composer.editing">تعديل رسالة</b><small id="esText"></small></div>
+          <button class="icon-btn sm" id="esClose"><svg class="ic"><use href="#i-close"/></svg></button>
+        </div>
+
+        <div class="rec-strip" id="recStrip" hidden>
+          <span class="rec-dot"></span><b id="recTime">0:00</b>
+          <span class="rec-hint" data-i18n="composer.recHint">جارٍ تسجيل ملاحظة صوتية…</span>
+          <button class="btn danger sm" id="recCancel" data-i18n="composer.cancel">إلغاء</button>
+          <button class="btn primary sm" id="recSend"><svg class="ic"><use href="#i-send"/></svg><span data-i18n="composer.send">إرسال</span></button>
+        </div>
+
+        <div class="attach-menu" id="attachMenu" hidden>
+          <button data-att="image"><i class="am-ico c1"><svg class="ic"><use href="#i-image"/></svg></i><span data-i18n="att.photo">صورة أو فيديو</span></button>
+          <button data-att="file"><i class="am-ico c2"><svg class="ic"><use href="#i-file"/></svg></i><span data-i18n="att.file">ملف</span></button>
+          <button data-att="poll"><i class="am-ico c3"><svg class="ic"><use href="#i-poll"/></svg></i><span data-i18n="att.poll">استطلاع</span></button>
+          <button data-att="task"><i class="am-ico c4"><svg class="ic"><use href="#i-list"/></svg></i><span data-i18n="att.task">قائمة مهام</span></button>
+          <button data-att="sticker"><i class="am-ico c5"><svg class="ic"><use href="#i-sticker"/></svg></i><span data-i18n="att.sticker">ملصق</span></button>
+        </div>
+
+        <div class="composer" id="composer">
+          <button class="icon-btn round" id="btnAttach" data-tip="attach"><svg class="ic"><use href="#i-clip"/></svg></button>
+          <div class="comp-input">
+            <textarea id="msgInput" rows="1" data-i18n-ph="composer.ph" placeholder="اكتب رسالة…" dir="auto"></textarea>
+            <button class="icon-btn round" id="btnEmoji" data-tip="emoji"><svg class="ic"><use href="#i-smile"/></svg></button>
+          </div>
+          <button class="send-btn" id="btnSend" aria-label="send"><svg class="ic mic-ic"><use href="#i-mic"/></svg><svg class="ic send-ic"><use href="#i-send"/></svg></button>
+        </div>
+
+        <!-- emoji / sticker panel -->
+        <div class="emoji-panel" id="emojiPanel" hidden>
+          <div class="ep-head">
+            <div class="ep-tabs" id="epTabs">
+              <button data-ep="emoji" class="on" data-i18n="ep.emoji">رموز</button>
+              <button data-ep="sticker" data-i18n="ep.sticker">ملصقات</button>
+            </div>
+            <button class="icon-btn sm" id="epClose"><svg class="ic"><use href="#i-close"/></svg></button>
+          </div>
+          <div class="ep-search"><svg class="ic"><use href="#i-search"/></svg><input id="epSearch" type="search" data-i18n-ph="ep.searchPh" placeholder="ابحث عن رمز تعبيري"></div>
+          <div class="ep-body" id="epBody"></div>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- DRAWER (chat/user info) -->
+  <aside class="drawer" id="drawer" hidden>
+    <header class="dr-head">
+      <button class="icon-btn" id="drClose"><svg class="ic"><use href="#i-close"/></svg></button>
+      <b data-i18n="drawer.info">معلومات</b>
+      <button class="icon-btn" id="drMore"><svg class="ic"><use href="#i-more"/></svg></button>
+    </header>
+    <div class="dr-body" id="drBody"></div>
+  </aside>
+
+  <!-- CONTEXT MENU -->
+  <div class="ctx" id="ctxmenu" hidden></div>
+
+  <!-- EMOJI QUICK REACTIONS -->
+  <div class="react-pop" id="reactPop" hidden></div>
+</div>
+
+<!-- ============ PALETTE (Ctrl+K) ============ -->
+<div class="overlay palette-ov" id="palette" hidden>
+  <div class="palette">
+    <div class="pl-input">
+      <svg class="ic"><use href="#i-search"/></svg>
+      <input id="plInput" type="text" data-i18n-ph="palette.ph" placeholder="ابحث عن محادثة، رسالة، أو أمر…" dir="auto">
+      <kbd>Esc</kbd>
+    </div>
+    <div class="pl-results" id="plResults"></div>
+    <div class="pl-foot"><span><kbd>↑↓</kbd> <span data-i18n="palette.nav">تنقّل</span></span><span><kbd>Enter</kbd> <span data-i18n="palette.open">فتح</span></span></div>
+  </div>
+</div>
+
+<!-- ============ STORY VIEWER ============ -->
+<div class="story-viewer" id="storyView" hidden>
+  <div class="sv-progress" id="svProgress"></div>
+  <header class="sv-head">
+    <span class="avatar sm" id="svAvatar"></span>
+    <div><b id="svName"></b><small id="svTime"></small></div>
+    <button class="icon-btn" id="svMute"><svg class="ic"><use href="#i-bell"/></svg></button>
+    <button class="icon-btn" id="svClose"><svg class="ic"><use href="#i-close"/></svg></button>
+  </header>
+  <div class="sv-stage" id="svStage"></div>
+  <div class="sv-caption" id="svCaption" hidden></div>
+  <footer class="sv-foot">
+    <button class="icon-btn" id="svReact"><svg class="ic"><use href="#i-heart"/></svg></button>
+    <input id="svReply" type="text" data-i18n-ph="story.reply" placeholder="ردّ على القصة…">
+    <button class="btn primary sm" id="svSend"><svg class="ic"><use href="#i-send"/></svg></button>
+  </footer>
+</div>
+
+<!-- ============ MEDIA VIEWER ============ -->
+<div class="viewer" id="viewer" hidden>
+  <header class="vw-head">
+    <div class="vw-meta"><b id="vwTitle"></b><small id="vwSub"></small></div>
+    <button class="icon-btn" id="vwDl"><svg class="ic"><use href="#i-download"/></svg></button>
+    <button class="icon-btn" id="vwClose"><svg class="ic"><use href="#i-close"/></svg></button>
+  </header>
+  <button class="vw-nav prev" id="vwPrev"><svg class="ic"><use href="#i-back"/></svg></button>
+  <div class="vw-stage" id="vwStage"></div>
+  <button class="vw-nav next" id="vwNext"><svg class="ic"><use href="#i-forward"/></svg></button>
+  <div class="vw-caption" id="vwCaption"></div>
+</div>
+
+<!-- ============ CALL OVERLAY ============ -->
+<div class="call" id="callOverlay" hidden>
+  <div class="call-bg" id="callBg"></div>
+  <div class="call-inner">
+    <div class="call-remote">
+      <div class="call-avatar" id="callAvatar"></div>
+      <video id="remoteVideo" autoplay playsinline hidden></video>
+      <div class="call-wave" id="callWave"><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="call-self"><video id="selfVideo" autoplay muted playsinline hidden></video><div class="self-off" id="selfOff">📷</div></div>
+    <div class="call-info">
+      <b id="callName">—</b>
+      <small id="callStatus">…</small>
+    </div>
+    <div class="call-actions" id="callActions">
+      <button data-ca="mute" data-tip="mic"><svg class="ic"><use href="#i-mic"/></svg></button>
+      <button data-ca="cam" data-tip="video"><svg class="ic"><use href="#i-video"/></svg></button>
+      <button data-ca="screen" data-tip="screen"><svg class="ic"><use href="#i-grid"/></svg></button>
+      <button data-ca="end" class="danger" data-tip="end"><svg class="ic"><use href="#i-phone"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODALS ============ -->
+<div class="modal" id="m-newchat" hidden>
+  <div class="modal-card wide">
+    <header class="md-head"><b data-i18n="new.title">محادثة جديدة</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-search"><svg class="ic"><use href="#i-search"/></svg><input id="ncSearch" type="search" data-i18n-ph="search.ph" placeholder="بحث"></div>
+    <div class="md-quick">
+      <button id="qGroup"><i class="q-ico"><svg class="ic"><use href="#i-users"/></svg></i><span data-i18n="new.group">مجموعة جديدة</span></button>
+      <button id="qChannel"><i class="q-ico alt"><svg class="ic"><use href="#i-mega"/></svg></i><span data-i18n="new.channel">قناة جديدة</span></button>
+      <button id="qBot"><i class="q-ico bot"><svg class="ic"><use href="#i-bot"/></svg></i><span data-i18n="new.bot">تحدث مع مساعد وصل</span></button>
+    </div>
+    <div class="md-list" id="ncList"></div>
+  </div>
+</div>
+
+<div class="modal" id="m-create" hidden>
+  <div class="modal-card">
+    <header class="md-head"><b id="createTitle">—</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-body">
+      <div class="create-ava" id="createAva"><span>+</span></div>
+      <label class="fld"><span data-i18n="create.name">الاسم</span><input id="createName" type="text" dir="auto" maxlength="60"></label>
+      <label class="fld"><span data-i18n="create.about">وصف (اختياري)</span><textarea id="createAbout" rows="2" dir="auto"></textarea></label>
+      <div class="pick-head"><span data-i18n="create.members">الأعضاء</span><small id="pickCount"></small></div>
+      <div class="pick-list" id="pickList"></div>
+    </div>
+    <footer class="md-foot"><button class="btn ghost md-x" data-i18n="cancel">إلغاء</button><button class="btn primary" id="createGo" data-i18n="create.go">إنشاء</button></footer>
+  </div>
+</div>
+
+<div class="modal" id="m-poll" hidden>
+  <div class="modal-card">
+    <header class="md-head"><b data-i18n="poll.title">استطلاع جديد</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-body">
+      <label class="fld"><span data-i18n="poll.q">السؤال</span><input id="pollQ" type="text" dir="auto" maxlength="120"></label>
+      <div class="pick-head"><span data-i18n="poll.opts">الخيارات</span></div>
+      <div class="poll-opts" id="pollOpts"></div>
+      <button class="btn ghost sm" id="pollAdd"><svg class="ic"><use href="#i-plus"/></svg><span data-i18n="poll.add">إضافة خيار</span></button>
+      <label class="switch-row"><span data-i18n="poll.multi">اختيارات متعددة</span><input type="checkbox" id="pollMulti"><i class="sw"></i></label>
+      <label class="switch-row"><span data-i18n="poll.anon">تصويت مجهول</span><input type="checkbox" id="pollAnon" checked><i class="sw"></i></label>
+    </div>
+    <footer class="md-foot"><button class="btn ghost md-x" data-i18n="cancel">إلغاء</button><button class="btn primary" id="pollGo" data-i18n="poll.go">إرسال</button></footer>
+  </div>
+</div>
+
+<div class="modal" id="m-task" hidden>
+  <div class="modal-card">
+    <header class="md-head"><b data-i18n="task.title">قائمة مهام</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-body">
+      <label class="fld"><span data-i18n="task.titleIn">عنوان القائمة</span><input id="taskTitle" type="text" dir="auto" placeholder="مشتريات الأسبوع"></label>
+      <div class="pick-head"><span data-i18n="task.items">المهام</span></div>
+      <div class="task-items" id="taskItems"></div>
+      <button class="btn ghost sm" id="taskAdd"><svg class="ic"><use href="#i-plus"/></svg><span data-i18n="poll.add">إضافة</span></button>
+    </div>
+    <footer class="md-foot"><button class="btn ghost md-x" data-i18n="cancel">إلغاء</button><button class="btn primary" id="taskGo" data-i18n="poll.go">إرسال</button></footer>
+  </div>
+</div>
+
+<div class="modal" id="m-forward" hidden>
+  <div class="modal-card">
+    <header class="md-head"><b data-i18n="fwd.title">إعادة توجيه</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-search"><svg class="ic"><use href="#i-search"/></svg><input id="fwdSearch" type="search" data-i18n-ph="search.ph" placeholder="بحث"></div>
+    <div class="md-list" id="fwdList"></div>
+    <footer class="md-foot"><span class="fwd-prev" id="fwdPrev"></span><button class="btn primary" id="fwdGo" disabled data-i18n="fwd.go">إرسال</button></footer>
+  </div>
+</div>
+
+<div class="modal" id="m-folder" hidden>
+  <div class="modal-card">
+    <header class="md-head"><b data-i18n="folder.title">مجلد جديد</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-body">
+      <div class="emoji-pick" id="folderEmoji"></div>
+      <label class="fld"><span data-i18n="folder.name">الاسم</span><input id="folderName" type="text" dir="auto" maxlength="24"></label>
+      <div class="pick-head"><span data-i18n="folder.chats">المحادثات</span></div>
+      <div class="pick-list" id="folderChats"></div>
+    </div>
+    <footer class="md-foot"><button class="btn ghost md-x" data-i18n="cancel">إلغاء</button><button class="btn primary" id="folderGo" data-i18n="create.go">إنشاء</button></footer>
+  </div>
+</div>
+
+<div class="modal" id="m-profile" hidden>
+  <div class="modal-card">
+    <header class="md-head"><b id="profTitle" data-i18n="profile.title">الملف الشخصي</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-body" id="profBody"></div>
+    <footer class="md-foot" id="profFoot"></footer>
+  </div>
+</div>
+
+<div class="modal" id="m-members" hidden>
+  <div class="modal-card">
+    <header class="md-head"><b data-i18n="members.title">الأعضاء</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-search"><svg class="ic"><use href="#i-search"/></svg><input id="memSearch" type="search" data-i18n-ph="search.ph" placeholder="بحث"></div>
+    <div class="md-list" id="memList"></div>
+  </div>
+</div>
+
+<div class="modal" id="m-pinned" hidden>
+  <div class="modal-card">
+    <header class="md-head"><b data-i18n="pinned.title">الرسائل المثبّتة</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-list" id="pinList"></div>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+<div class="modal" id="m-settings" hidden>
+  <div class="modal-card settings">
+    <header class="md-head"><b data-i18n="settings.title">الإعدادات</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="set-wrap">
+      <nav class="set-nav" id="setNav">
+        <button data-s="me" class="on"><svg class="ic"><use href="#i-user"/></svg><span data-i18n="set.me">حسابي</span></button>
+        <button data-s="privacy"><svg class="ic"><use href="#i-shield"/></svg><span data-i18n="set.privacy">الخصوصية</span></button>
+        <button data-s="notif"><svg class="ic"><use href="#i-bell"/></svg><span data-i18n="set.notif">الإشعارات</span></button>
+        <button data-s="chat"><svg class="ic"><use href="#i-palette"/></svg><span data-i18n="set.chat">المظهر والثيمات</span></button>
+        <button data-s="lang"><svg class="ic"><use href="#i-globe"/></svg><span data-i18n="set.lang">اللغة</span></button>
+        <button data-s="data"><svg class="ic"><use href="#i-wallet"/></svg><span data-i18n="set.data">البيانات والتخزين</span></button>
+        <button data-s="keys"><svg class="ic"><use href="#i-keyboard"/></svg><span data-i18n="set.keys">الاختصارات</span></button>
+        <button data-s="about"><svg class="ic"><use href="#i-spark"/></svg><span data-i18n="set.about">عن وصل</span></button>
+      </nav>
+      <div class="set-panes" id="setPanes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SHORTCUTS -->
+<div class="modal" id="m-shortcuts" hidden>
+  <div class="modal-card">
+    <header class="md-head"><b data-i18n="keys.title">اختصارات لوحة المفاتيح</b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-body"><div class="keys-grid" id="keysGrid"></div></div>
+  </div>
+</div>
+
+<!-- GENERIC PROMPT / CONFIRM -->
+<div class="modal" id="m-input" hidden>
+  <div class="modal-card slim">
+    <header class="md-head"><b id="inpTitle"></b><button class="icon-btn md-x"><svg class="ic"><use href="#i-close"/></svg></button></header>
+    <div class="md-body"><div class="fld"><input id="inpField" type="text" dir="auto" aria-labelledby="inpTitle" autocomplete="off"></div><p class="auth-err" id="inpErr" hidden></p></div>
+    <footer class="md-foot"><button class="btn ghost md-x" data-i18n="cancel">إلغاء</button><button class="btn primary" id="inpGo" data-i18n="ok">موافق</button></footer>
+  </div>
+</div>
+
+<div class="modal" id="m-confirm" hidden>
+  <div class="modal-card slim">
+    <header class="md-head"><b id="cfTitle"></b></header>
+    <div class="md-body"><p id="cfText" class="cf-text"></p></div>
+    <footer class="md-foot"><button class="btn ghost md-x" data-i18n="cancel">إلغاء</button><button class="btn danger" id="cfGo">OK</button></footer>
+  </div>
+</div>
+
+<!-- TOASTS -->
+<div class="toasts" id="toasts"></div>
+
+<!-- FILE INPUTS -->
+<input type="file" id="fileImage" accept="image/*,video/*" hidden>
+<input type="file" id="fileAny" hidden>
+<input type="file" id="fileBackup" accept="application/json" hidden>
+
+<noscript><div style="padding:40px;font-family:sans-serif">يتطلب تطبيق وصل تفعيل JavaScript.</div></noscript>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/bot.js"></script>
+<script src="assets/js/chat.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

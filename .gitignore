@@ -1,0 +1,5 @@
+# local-only
+*.bak
+wasl-backup-*.json
+.DS_Store
+Thumbs.db
