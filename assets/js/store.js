@@ -121,8 +121,8 @@
       m("u_sara", "أرسل لي لقطة لما تجهز", ago(5.6 * HOUR)),
       m("u_me", "تمام 👍", ago(5.5 * HOUR)),
       m("u_sara", "إيه رأيك نضيف وضع ليلي للتطبيق؟", ago(90 * MIN)),
-      m("u_me", "أصلاً فيه **10 ثيمات** 😄 جرّبي ثيم *Forest* أو *Sunset*", ago(86 * MIN),
-        { tr: "There are actually **10 themes** 😄 try *Forest* or *Sunset*" }),
+      m("u_me", "أصلاً فيه **13 ثيمات** 😄 جرّبي ثيم *Golden* أو *Coffee*", ago(86 * MIN),
+        { tr: "There are actually **13 themes** 😄 try *Golden* or *Coffee*" }),
       m("u_sara", "واو! وين خيار اللغة؟", ago(80 * MIN)),
       m("u_me", "زر 🌐 في الشريط السفلي — عربي/إنجليزي مع اتجاه تلقائي", ago(76 * MIN),
         { tr: "The 🌐 button in the bottom bar — Arabic/English with automatic direction" }),
@@ -166,7 +166,7 @@
     ];
 
     M.c_tech = [
-      m("u_waslai", "📢 **إطلاق وصل 1.0** — تطبيق دردشة يعمل بلا خادم، 10 ثيمات، ومساعد ذكي مدمج.",
+      m("u_waslai", "📢 **إطلاق وصل 1.0** — تطبيق دردشة يعمل بلا خادم، 13 ثيمات، ومساعد ذكي مدمج.",
         ago(DAY + 6 * HOUR), { views: 12430 }),
       m("u_waslai", "🔥 5 أسباب تجعل المتصفح أسرع من التطبيقات الأصلية:\n1. لا تحديثات\n2. لا تثبيت\n3. لا حسابات سحابية\n4. فتح فوري\n5. بياناتك لا تخرج من جهازك",
         ago(8 * HOUR), { views: 9820 }),
@@ -596,7 +596,8 @@
       const ws = state.me ? DB.ws() : { chats: [], messages: {} };
       let msgs = 0;
       for (const k in ws.messages) msgs += ws.messages[k].length;
-      return { chats: ws.chats.length, msgs, media: DB.media.count(), storage: DB.media.bytes(), themes: 10 };
+      return { chats: ws.chats.length, msgs, media: DB.media.count(), storage: DB.media.bytes(),
+        themes: (window.UI && UI.THEMES && UI.THEMES.length) || 10 };
     },
     unreadTotal() {
       return DB.chats().reduce((s, c) => s + (c.muted ? 0 : (c.unread || 0)), 0);

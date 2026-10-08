@@ -326,10 +326,13 @@
     { id: "forest", label: "Forest", dark: true, s: "#0A1A12", a: "#34D399", b: "#15301F" },
     { id: "sunset", label: "Sunset", dark: true, s: "#1D1219", a: "#FB7185", b: "#31202B" },
     { id: "violet", label: "Violet", dark: true, s: "#130E24", a: "#A78BFA", b: "#231B40" },
+    { id: "golden", label: "Golden", dark: true, s: "#1B1710", a: "#EAB308", b: "#2B251A" },
+    { id: "coffee", label: "Coffee", dark: true, s: "#1A1411", a: "#D6A877", b: "#2B221D" },
     { id: "light", label: "Light", dark: false, s: "#FFFFFF", a: "#5B8CFF", b: "#E7EBF2" },
     { id: "ocean", label: "Ocean", dark: false, s: "#FFFFFF", a: "#0EA5E9", b: "#E1EDF7" },
     { id: "cream", label: "Cream", dark: false, s: "#FFFDF8", a: "#C9A227", b: "#EDE6DA" },
-    { id: "mint", label: "Mint", dark: false, s: "#FFFFFF", a: "#10B981", b: "#DFF1E9" }
+    { id: "mint", label: "Mint", dark: false, s: "#FFFFFF", a: "#10B981", b: "#DFF1E9" },
+    { id: "rose", label: "Rose", dark: false, s: "#FFFFFF", a: "#EC4899", b: "#F6E4EC" }
   ];
   function applyTheme(id) {
     const th = THEMES.find(x => x.id === id) || THEMES[0];

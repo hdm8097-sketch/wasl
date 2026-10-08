@@ -43,7 +43,7 @@ git add -A; git commit -m "update"; git push
 
 **الواجهة**
 - عربي/إنجليزي مع زر تبديل واتجاه تلقائي (`Alt+G`)
-- 4 ثيمات + ألوان تمييز (accents) متعددة + خلفيات محادثة (wallpapers) + أحجام خط
+- 13 ثيماً (8 داكنة + 5 فاتحة) بينها **الذهبي Golden** و**المموكا Coffee** و**الوردي Rose** + 10 ألوان تمييز (accents) + 4 خلفيات محادثة (wallpapers) + أحجام خط
 - قائمة أوامر سريعة (Command Palette) بـ `Ctrl+K`
 - مجلدات محادثات، مقص (Archive)، كتم، بحث في القائمة الجانبية
 - قصص (Stories) مع مؤشر تقدم، رد على القصة كرسالة، وتفاعلات
@@ -67,7 +67,7 @@ git add -A; git commit -m "update"; git push
 | `Ctrl+K` | قائمة الأوامر | Command palette |
 | `Ctrl+E` | محادثة جديدة | New chat |
 | `Ctrl+,` | الإعدادات | Settings |
-| `Alt+T` | تبديل الثيم | Cycle theme |
+| `Alt+T` | الثيم التالي (يدور على 13 ثيم) | Next theme (cycles 13) |
 | `Alt+G` | تبديل اللغة | Toggle language |
 | `Alt+↑ / Alt+↓` | المحادثة السابقة/التالية | Prev/next chat |
 | `Ctrl+Shift+F` | بحث داخل المحادثة | In-chat search |

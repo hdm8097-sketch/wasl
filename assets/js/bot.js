@@ -155,8 +155,8 @@
 
     /* keyword knowledge */
     if (/(ثيم|theme|لون|تصميم|design|واجهة|ui)/.test(low)) return { text: ar
-      ? "🎨 عندك **10 ثيمات** وألوان بلا حدود: الإعدادات ← *المظهر والثيمات*. جرّب ثيم **Sunset** مع لون **Rose** 🌅"
-      : "🎨 You have **10 themes** and unlimited colors: Settings ← *Appearance & themes*. Try **Sunset** with **Rose** 🌅", delay: 700 };
+      ? "🎨 عندك **" + (((window.UI && UI.THEMES) || []).length || 13) + " ثيمات** وألوان بلا حدود: الإعدادات ← *المظهر والثيمات*. جرّب ثيم **Golden** مع لون **Gold** ✨"
+      : "🎨 You have **" + (((window.UI && UI.THEMES) || []).length || 13) + " themes** and unlimited colors: Settings ← *Appearance & themes*. Try **Golden** with **Gold** ✨", delay: 700 };
     if (/(مهم|todo|مهام|قائمة|task)/.test(low)) return { text: R[0] + "\n\n" + (ar ? "أو اضغط 📎 ← **قائمة مهام** لإنشاء قائمة فورية." : "Or hit 📎 → **Task list** to build one now."), delay: 700 };
     if (/(خصوص|privacy|أمان|secure|تشفير)/.test(low)) return { text: ar
       ? "🔒 كل شيء يبقى داخل متصفحك: لا خادم، لا تتبّع، ولا إعلانات. حتى الرمز السري يُجزَّأ بـ SHA-256 محلياً."

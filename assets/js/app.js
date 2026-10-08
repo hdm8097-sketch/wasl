@@ -599,7 +599,8 @@
         t("s.aboutSub") + "</p><div class=\"about-feats\">" +
         [["⚡", I18N.lang === "ar" ? "مزامنة فورية بين التبويبات عبر BroadcastChannel — جرّب فتح تبويبين." : "Instant tab-to-tab sync via BroadcastChannel — open two tabs and try it."],
          ["🤖", I18N.lang === "ar" ? "مساعد وصل يعمل بلا إنترنت: حسابات، نكت، أفكار، ومهام." : "Offline assistant: math, jokes, ideas and tasks."],
-         ["🎨", I18N.lang === "ar" ? "10 ثيمات + 10 ألوان مميّزة + 4 خلفيات." : "10 themes + 10 accent colors + 4 wallpapers."],
+         ["🎨", (I18N.lang === "ar" ? UI.THEMES.length + " ثيمات + " : UI.THEMES.length + " themes + ") +
+           (I18N.lang === "ar" ? "10 ألوان مميّزة + 4 خلفيات." : "10 accent colors + 4 wallpapers.")],
          ["🔐", I18N.lang === "ar" ? "قفل PIN، رسائل تدمر ذاتياً، وتشفير محلي SHA-256." : "PIN lock, self-destructing messages, local SHA-256."],
          ["🔒", I18N.lang === "ar" ? "بلا خادم، بلا إعلانات، بلا تتبّع — بياناتك لا تغادر المتصفح." : "No server, no ads, no tracking — data never leaves the browser."]]
           .map(f => "<div><span>" + f[0] + "</span>" + f[1] + "</div>").join("") +
@@ -851,8 +852,14 @@
 
   /* ================= misc actions ================= */
   function cycleTheme() {
-    const next = UI.toggleQuickDark();
-    UI.toast(t("to.theme") + ": " + next, "ok");
+    const list = UI.THEMES;
+    const cur = document.documentElement.dataset.theme;
+    const i = list.findIndex(x => x.id === cur);
+    const next = list[(i + 1) % list.length];
+    DB.state.settings.theme = next.id;
+    DB.save();
+    UI.applyTheme(next.id);
+    UI.toast(t("to.theme") + ": " + next.label, "ok");
     if ($("#m-settings") && !$("#m-settings").hidden) renderSetPane();
   }
   function toggleLang() { setLang(I18N.lang === "ar" ? "en" : "ar"); }
